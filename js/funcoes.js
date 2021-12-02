@@ -1,7 +1,10 @@
-$(function(){
-    $.getJSON("js/automoveis.json", function(data) {
+function PesquisarMarca(codigo){
 
-        for(var i = 0; i < data['automoveis'].length; i++){
+    codigo = codigo.value;
+$(function(){
+    $.getJSON("js/automoveis.json", function(data){
+        for(var i = 0; i < data['automoveis'].length; i++)
+        if (data['automoveis'][i]['MARCA'].match(codigo)){
             $("#TableData").append("<tr>");
             $("#TableData").append("<td scope='col'>" + data['automoveis'][i]['MARCA'] + "</td>");
             $("#TableData").append("<td scope='col'>" + data['automoveis'][i]['CARRO'] + "</td>");
@@ -15,8 +18,9 @@ $(function(){
             $("#TableData").append("<td scope='col'>" + data['automoveis'][i]['CAMBER_TRASEIRA_MAX'] + "</td>");
             $("#TableData").append("<td scope='col'>" + data['automoveis'][i]['CONVERGENCIA_TRASEIRA_MIN'] + "</td>");
             $("#TableData").append("<td scope='col'>" + data['automoveis'][i]['CONVERGENCIA_TRASEIRA_MAX'] + "</td>");
-            $("#TableData").append("</tr>");
+            $("#TableData").append("<tr>");
         }
+    
     });
-
 });
+}
